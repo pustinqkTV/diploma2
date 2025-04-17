@@ -1,0 +1,147 @@
+/***************************************************************
+  style.cart.css
+  Cart Page Styles for MyFootballStore
+***************************************************************/
+
+/* Cart Page Container */
+#cartList {
+  margin: 2rem auto;
+  max-width: 1200px;
+  padding: 0 1.5rem;
+}
+
+/* Cart Item Styling */
+.cart-item {
+  background: linear-gradient(145deg, #ffffff, #f5f5f5);
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cart-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+.cart-item .card-body {
+  padding: 1.5rem;
+}
+
+.cart-item img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.cart-item img:hover {
+  transform: scale(1.05);
+}
+
+.cart-item .card-title {
+  color: #2c3e50;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.cart-item .card-text {
+  color: #5a6c7d;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Remove Button Styling */
+.cart-item button[data-remove-id] {
+  background-color: #ff4757;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 500;
+  padding: 0.6rem 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.cart-item button[data-remove-id]:hover {
+  background-color: #ff6b81;
+  transform: scale(1.05);
+}
+
+/* Summary Card Styling */
+.summary-card {
+  background: linear-gradient(145deg, #ffffff, #f8f9fa);
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+  padding: 1.5rem;
+}
+
+.summary-card .card-body {
+  padding: 1.5rem;
+}
+
+.summary-card h5 {
+  color: #2c3e50;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.summary-card p {
+  color: #5a6c7d;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.summary-card .btn-primary {
+  background: linear-gradient(135deg, #4e54c8, #8f94fb);
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 0.8rem 2rem;
+  transition: all 0.3s ease;
+}
+
+.summary-card .btn-primary:hover {
+  background: linear-gradient(135deg, #3f459e, #7176cc);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(78, 84, 200, 0.4);
+}
+
+/* Empty Cart Message */
+#cartList p:only-child {
+  color: #5a6c7d;
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 3rem;
+  background: #f8f9fa;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .cart-item img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .summary-card .card-body {
+    text-align: center;
+  }
+  
+  .cart-item .card-title {
+    font-size: 1.2rem;
+  }
+  
+  .cart-item .card-text {
+    font-size: 1rem;
+  }
+}

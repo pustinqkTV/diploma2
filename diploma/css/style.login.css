@@ -1,0 +1,164 @@
+.login-wrapper {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+
+.login-side-panel {
+    flex: 1;
+    position: relative;
+    background-image: url('../images/football-background.jpg');
+    background-size: cover;
+    background-position: center;
+    display: none;
+}
+
+.login-side-panel .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.side-content {
+    position: relative;
+    z-index: 1;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    margin-top: 40%;
+}
+
+.login-main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.login-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    transition: transform 0.3s ease;
+}
+
+.login-card:hover {
+    transform: translateY(-5px);
+}
+
+.brand-logo {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.brand-logo img {
+    width: 120px;
+    margin-bottom: 1rem;
+}
+
+.brand-logo h3 {
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.brand-logo p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.brand-section .logo-container {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #fff;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 0; /* Remove any padding */
+}
+
+.brand-section .logo-container img {
+  width: 100%; /* Change from 80% to 100% */
+  height: 100%; /* Change from 80% to 100% */
+  object-fit: cover; /* Change from contain to cover */
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    color: #555;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.form-group label i {
+    margin-right: 0.5rem;
+}
+
+.form-control {
+    border: 2px solid #e1e1e1;
+    padding: 0.8rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.15);
+}
+
+.login-btn {
+    padding: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+}
+
+.register-link {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.register-link:hover {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+@media (min-width: 992px) {
+    .login-side-panel {
+        display: block;
+    }
+    
+    .login-card {
+        margin-left: 2rem;
+    }
+}
+
+.input-group-text {
+    background: transparent;
+    border-left: none;
+    cursor: pointer;
+}
+
+.input-group .form-control {
+    border-right: none;
+}

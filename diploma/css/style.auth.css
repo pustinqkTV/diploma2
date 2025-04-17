@@ -1,0 +1,189 @@
+/***************************************************************
+  style.auth.alternative.css
+  Alternative Authentication Styles for MyFootballStore (Glassmorphism)
+  
+  This file provides a modern glass-like design for auth pages:
+  - Full-screen container with a gradient background and dark overlay
+  - Glassmorphism card with a blurred background, soft borders, and shadows
+  - Clean, modern input fields and a password toggle
+  - Gradient buttons with hover effects
+  - Responsive adjustments for smaller screens
+***************************************************************/
+
+/* Full-screen container with a gradient background */
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    padding: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Dark overlay for enhanced contrast */
+  .auth-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: -1;
+  }
+  
+  /* Glass-like card with blurred background */
+  .auth-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 8px 32px 0 rgba(31,38,135,0.37);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    z-index: 1;
+    color: #fff;
+  }
+  
+  /* Card heading */
+  .auth-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #fff;
+  }
+  
+  /* Form groups */
+  .auth-card .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .auth-card label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #e0e0e0;
+  }
+  
+  /* Input fields with a subtle translucent background */
+  .auth-card input.form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Input group for password fields */
+  .input-group {
+    display: flex;
+  }
+  
+  .input-group .form-control {
+    flex: 1;
+    border-right: none;
+    border-radius: 8px 0 0 8px;
+  }
+  
+  /* Toggle password button */
+  .toggle-password {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-left: none;
+    border-radius: 0 8px 8px 0;
+    padding: 0 1rem;
+    cursor: pointer;
+  }
+  
+  .toggle-password i {
+    font-size: 1rem;
+    color: #ccc;
+  }
+  
+  /* Gradient button for submission */
+  .auth-card button.btn {
+    width: 100%;
+    padding: 0.75rem;
+    background: linear-gradient(45deg, #56ccf2, #2f80ed);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    margin-top: 1rem;
+  }
+  
+  .auth-card button.btn:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(45deg, #2f80ed, #56ccf2);
+  }
+  
+  /* Alert messages */
+  .auth-card .alert {
+    display: none; /* Toggle via JavaScript when needed */
+    padding: 0.75rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .alert-success {
+    background: rgba(40,167,69,0.2);
+    color: #28a745;
+    border: 1px solid #28a745;
+  }
+  
+  .alert-danger {
+    background: rgba(220,53,69,0.2);
+    color: #dc3545;
+    border: 1px solid #dc3545;
+  }
+  
+  /* Link styling */
+  .auth-card a {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    color: #56ccf2;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .auth-card a:hover {
+    color: #2f80ed;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 480px) {
+    .auth-card {
+      padding: 1.5rem;
+    }
+    
+    .auth-card h3 {
+      font-size: 1.5rem;
+    }
+    
+    .auth-card input.form-control {
+      font-size: 0.95rem;
+    }
+    
+    .auth-card button.btn {
+      padding: 0.65rem;
+      font-size: 0.9rem;
+    }
+  }
+  

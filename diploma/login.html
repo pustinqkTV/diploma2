@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MyFootballStore - Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.ico" />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.base.css" />
+    
+    <link rel="stylesheet" href="css/style.login.css" />
+    <link rel="stylesheet" href="css/style.login.advanced.css" />
+    <!-- Add Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <!-- jQuery & Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
+    ></script>
+    <!-- Global JS -->
+    <script src="js/global.js" defer></script>
+    <!-- Page-specific JS -->
+    <script src="js/login.js" defer></script>
+  </head>
+  <body>
+    <div class="login-wrapper">
+      <div class="animated-bg">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
+      
+      <div class="login-container">
+        <div class="login-box">
+          <div class="brand-section">
+            <div class="logo-container">
+              <img src="images/logo.png" alt="MyFootballStore Logo" class="floating">
+            </div>
+            <h1 class="welcome-text">Welcome Back!</h1>
+            <p class="subtitle">Sign in to continue to MyFootballStore</p>
+          </div>
+
+          <form id="loginForm" class="login-form">
+            <div class="form-group">
+              <div class="input-icon-wrapper">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="email" class="form-control" placeholder="Email address" required>
+                <span class="focus-border"></span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-icon-wrapper">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" class="form-control" placeholder="Password" required>
+                <span class="focus-border"></span>
+                <button type="button" class="toggle-password" id="togglePassword">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="form-options">
+              <label class="remember-me">
+                <input type="checkbox" id="rememberMe">
+                <span class="checkmark"></span>
+                Remember me
+              </label>
+              <a href="#" class="forgot-password" data-toggle="modal" data-target="#forgotPasswordModal">Forgot Password?</a>
+            </div>
+
+            <div id="errorMessage" class="alert alert-danger" style="display:none;"></div>
+
+            <button type="submit" class="login-button" id="loginButton">
+              <span id="loginButtonText">Sign In</span>
+              <span id="loginButtonSpinner" class="spinner" style="display:none;"></span>
+            </button>
+          </form>
+
+          <div class="register-prompt">
+            <span>Don't have an account?</span>
+            <a href="register.html" class="register-link">Create Account</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="forgotPasswordModalLabel">Reset Password</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="forgotPasswordForm">
+              <div class="form-group">
+                <label for="resetEmail">Email address</label>
+                <input type="email" class="form-control" id="resetEmail" placeholder="Enter your email" required>
+              </div>
+              <div id="resetPasswordError" class="alert alert-danger" style="display:none;"></div>
+              <div id="resetPasswordSuccess" class="alert alert-success" style="display:none;"></div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="sendResetLink">Send Reset Link</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

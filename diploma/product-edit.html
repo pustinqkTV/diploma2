@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Edit Product - MyFootballStore Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <!-- Font Awesome (optional) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.base.css" />
+    <link rel="stylesheet" href="css/style.admin.css" />
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+  
+    <!-- Global JS -->
+    <script src="js/global.js" defer></script>
+    <!-- Page-specific JS -->
+    <script src="js/product-edit.js" defer></script>
+  </head>
+  <body>
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h2><i class="fas fa-edit"></i> Edit Product</h2>
+            </div>
+            <div class="card-body">
+                <form id="editProductForm">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="editProductName">Product Name</label>
+                            <input type="text" class="form-control" id="editProductName" required>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="editProductPrice">Price ($)</label>
+                            <input type="number" class="form-control" id="editProductPrice" step="0.01" required>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="editProductStock">Stock</label>
+                            <input type="number" class="form-control" id="editProductStock" required>
+                        </div>
+                    </div>
+
+                    <!-- Replace the hardcoded category select with dynamic one -->
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="editProductCategory">Category</label>
+                            <select class="form-control" id="editProductCategory" required>
+                                <!-- Categories will be loaded dynamically -->
+                                <option value="">Select a category</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="editProductDiscount">Discount (%)</label>
+                            <input type="number" class="form-control" id="editProductDiscount" min="0" max="100">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editProductDescription">Description</label>
+                        <textarea class="form-control" id="editProductDescription" rows="3" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Specifications</label>
+                        <div id="editProductSpecs">
+                            <!-- Specification rows will be added here -->
+                        </div>
+                        <button type="button" class="btn btn-secondary mt-2" id="addSpecButton">
+                            <i class="fas fa-plus"></i> Add Specification
+                        </button>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editProductTags">Tags (comma-separated)</label>
+                        <input type="text" class="form-control" id="editProductTags">
+                    </div>
+
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-save"></i> Save Changes
+                        </button>
+                        <a href="admin.html" class="btn btn-secondary ml-2">
+                            <i class="fas fa-arrow-left"></i> Back to Admin
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,540 @@
+/***************************************************************
+  style.favorite.css
+  Advanced Favorites Page Styles for Football Stickers & Cards Shop
+  This stylesheet uses CSS variables, grid layout, 3D flip-card effects,
+  smooth transitions, and a custom modal overlay for enhanced interactivity.
+
+  ~ Enhanced with additional transitions, not removing any lines ~
+***************************************************************/
+
+/* CSS Variables for theming */
+:root {
+  --card-bg: #ffffff;
+  --card-border-radius: 12px;
+  --card-shadow: rgba(0, 0, 0, 0.15);
+  --primary-color: #1565c0;
+  --danger-color: #dc3545;
+  --transition-duration: 0.4s;
+  --modal-bg: rgba(0, 0, 0, 0.7);
+}
+
+/* Overall Favorites Container */
+.favorites-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f7f7f7, #ffffff);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Favorites List Grid Layout */
+.favorites-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Favorite Card with 3D Flip Effect */
+.favorite-card {
+  perspective: 1200px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.98);
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  overflow: hidden;
+  transition: transform var(--transition-duration) ease, box-shadow var(--transition-duration) ease;
+  transform-style: flat;
+}
+.favorite-card .card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform: none !important;
+}
+.favorite-card.flipped .card-inner {
+  transform: none;
+}
+
+/* Shared styles for both card faces */
+.favorite-card .card-face {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  backface-visibility: visible;
+  border-radius: var(--card-border-radius);
+  overflow: hidden;
+  background: var(--card-bg);
+  box-shadow: 0 4px 12px var(--card-shadow);
+  transform: none !important;
+}
+
+/* Front Face */
+.favorite-card .card-front {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  transition: transform 0.3s ease;
+}
+.favorite-card .card-front img {
+  width: 100%;
+  height: 200px; /* increased from 180px */
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.favorite-card:hover .card-front img {
+  transform: scale(1.08);
+}
+.favorite-card .card-front .card-info {
+  padding: 1rem;
+  text-align: center;
+}
+.favorite-card .card-front h5 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+.favorite-card .card-front .price-tag {
+  font-weight: bold;
+  color: var(--primary-color);
+  font-size: 1.1rem;
+}
+
+/* Back Face */
+.favorite-card .card-back {
+  position: relative;
+  transform: none;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  text-align: center;
+}
+.favorite-card .card-back p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+.favorite-card .card-back .remove-btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--danger-color);
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.favorite-card .card-back .remove-btn:hover {
+  background-color: darkred;
+  transform: scale(1.05);
+}
+
+/* Advanced Hover Effects */
+.favorite-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* Modal Overlay for Confirmation */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--modal-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.modal-overlay.fade-out {
+  animation: fadeOut 0.3s ease forwards;
+}
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+.modal-content h4 {
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 1rem;
+  color: #333;
+}
+.modal-content p {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  color: #666;
+}
+.modal-actions {
+  display: flex;
+  justify-content: space-around;
+}
+.modal-actions .btn {
+  min-width: 100px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .favorites-list {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+  .favorite-card .card-front img {
+    height: 160px;
+  }
+}
+@media (max-width: 480px) {
+  .favorites-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Favorites Hero Section */
+.favorites-hero {
+  position: relative;
+  background: linear-gradient(135deg, #1565c0, #0d47a1);
+  min-height: 40vh;
+  perspective: 1000px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 0;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+.favorites-hero::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 50%);
+  animation: rotate 30s linear infinite;
+}
+.favorites-hero .hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0,0,0,0.4), rgba(0,0,0,0.1));
+  z-index: 1;
+}
+.favorites-hero .hero-content {
+  position: relative;
+  z-index: 2;
+  transform-style: preserve-3d;
+  text-align: center;
+  max-width: 800px;
+  padding: 2rem;
+}
+.favorites-hero .hero-title {
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+}
+
+/* Favorites Grid */
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2.5rem;
+  padding: 0 1rem;
+  margin-bottom: 6rem;
+}
+
+/* Favorite Card */
+.favorite-card {
+  position: relative;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.favorite-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+.favorite-card img {
+  width: 100%;
+  height: 270px; /* increased from 250px */
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.favorite-card:hover img {
+  transform: scale(1.05);
+}
+.card-info {
+  padding: 1.5rem;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.95), white);
+}
+.card-info h5 {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+  color: #2c3e50;
+  font-weight: 600;
+}
+.price-tag {
+  font-size: 1.4rem;
+  color: #1565c0;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* Action Buttons */
+.btn-remove-favorite {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ff4b4b, #ff0000);
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.btn-remove-favorite:hover {
+  background: linear-gradient(135deg, #ff0000, #cc0000);
+  transform: translateY(-2px);
+}
+
+.btn-view-product {
+  background: #1565c0;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 15px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  margin-top: 1rem;
+}
+.btn-view-product:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(21, 101, 192, 0.2);
+}
+
+.remove-favorite-btn {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.remove-favorite-btn:hover {
+  background-color: #cc0000;
+}
+
+/* Toast Notifications */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 1rem 2rem;
+  border-radius: 15px;
+  color: white;
+  font-weight: 500;
+  z-index: 1000;
+  animation: slideInRight 0.3s ease, fadeOut 0.3s ease 2.7s;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+.toast-success {
+  background-color: #28a745;
+}
+.toast-error {
+  background-color: #dc3545;
+}
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* Empty State */
+.empty-favorites {
+  text-align: center;
+  padding: 4rem 1rem;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  margin: 2rem auto;
+  max-width: 600px;
+  font-family: 'Montserrat', sans-serif;
+}
+.empty-favorites h3 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+.empty-favorites p {
+  margin-bottom: 2rem;
+  color: #666;
+}
+.empty-favorites .btn-shop-now {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.3s ease;
+  margin-top: 1rem;
+}
+.empty-favorites .btn-shop-now:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(37, 117, 252, 0.3);
+}
+
+.btn-shop-now {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
+}
+
+.btn-shop-now:hover {
+  background-color: #0056b3;
+  color: white;
+  text-decoration: none;
+}
+
+/***************************************************************
+  style.favorites.css
+  Favorites Page Styles for MyFootballStore
+***************************************************************/
+
+/* Favorites Page Container */
+#favoritesList {
+  margin: 2rem auto;
+  max-width: 1200px;
+  padding: 0 1.5rem;
+}
+
+/* Favorite Item Styling */
+.favorite-item {
+  background: linear-gradient(145deg, #ffffff, #f5f5f5);
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.favorite-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+.favorite-item .card-body {
+  padding: 1.5rem;
+}
+
+.favorite-item img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.favorite-item img:hover {
+  transform: scale(1.05);
+}
+
+.favorite-item .card-title {
+  color: #2c3e50;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.favorite-item .card-text {
+  color: #5a6c7d;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Remove & Add to Cart Button Styling */
+.favorite-item button[data-remove-id] {
+  background-color: #ff4757;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 500;
+  padding: 0.6rem 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.favorite-item button[data-add-to-cart] {
+  background-color: #2ecc71;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 500;
+  padding: 0.6rem 1.2rem;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+/* Summary Card Styling */
+.summary-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+}
+
+.summary-details {
+  font-size: 1.1rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .favorite-item img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .favorite-item .card-body {
+    padding: 1rem;
+  }
+}

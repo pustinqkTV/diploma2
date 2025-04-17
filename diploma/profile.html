@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MyFootballStore</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.base.css" />
+    <link rel="stylesheet" href="css/style.header-hero.css" />
+    <link rel="stylesheet" href="css/style.profile.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <!-- jQuery & Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Global JS -->
+    <script src="js/global.js" defer></script>
+    <!-- Page-specific JS -->
+    <script src="js/profile.js" defer></script>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="advanced-header shop-header">
+      <div class="container d-flex justify-content-between align-items-center py-3">
+        <div class="logo-container">
+          <a href="index.html" class="d-flex align-items-center text-decoration-none">
+            <img src="images/logo.png" alt="MyFootballStore Logo" class="site-logo" />
+            <h1 class="site-title">MyFootballStore</h1>
+          </a>
+        </div>
+        <nav class="shop-nav">
+          <ul class="nav">
+            <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="shop.html"><i class="fas fa-store"></i> Shop</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="favorites.html">
+                <i class="fas fa-heart"></i> Favorites <span class="badge badge-pill badge-warning" id="favoritesCount">0</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="cart.html">
+                <i class="fas fa-shopping-cart"></i> Cart <span class="badge badge-pill badge-warning" id="cartCount">0</span>
+              </a>
+            </li>
+            <li class="nav-item"><a class="nav-link active" href="profile.html" id="profileNavItem"><i class="fas fa-user"></i> Profile</a></li>
+            <li class="nav-item"><a class="nav-link" href="admin.html" id="adminNavItem" style="display:none;"><i class="fas fa-user-shield"></i> Admin</a></li>
+            <li class="nav-item"><a class="nav-link" href="login.html" id="loginLink" style="display:none;"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="register.html" id="registerLink" style="display:none;"><i class="fas fa-user-plus"></i> Register</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content: Profile Dashboard -->
+    <main class="profile-container">
+      <div class="profile-header">
+        <h2><i class="fas fa-user-circle"></i> Your Profile Dashboard</h2>
+      </div>
+
+      <div class="profile-grid">
+        <!-- Account Summary Card -->
+        <div class="profile-card">
+          <div class="card-header">
+            <i class="fas fa-info-circle"></i> Account Summary
+          </div>
+          <div class="card-body" id="accountSummary">
+            <div class="user-avatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="user-info">
+              <p><strong>Email:</strong> <span id="userEmail"></span></p>
+              <p><strong>Member Since:</strong> <span id="memberSince"></span></p>
+            </div>
+            <button id="logoutBtn" class="btn btn-danger">
+              <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+          </div>
+        </div>
+
+        <!-- Orders Card -->
+        <div class="profile-card">
+          <div class="card-header">
+            <i class="fas fa-shopping-bag"></i> Recent Orders
+          </div>
+          <div class="card-body" id="ordersContainer">
+            <div class="loading-spinner">
+              <i class="fas fa-spinner fa-spin"></i> Loading orders...
+            </div>
+          </div>
+        </div>
+
+        <!-- Password Management Card -->
+        <div class="profile-card">
+          <div class="card-header">
+            <i class="fas fa-lock"></i> Password Management
+          </div>
+          <div class="card-body">
+            <form id="changePasswordForm" class="password-form">
+              <h4>Change Password</h4>
+              <div class="form-group">
+                <input type="password" id="currentPassword" class="form-control" 
+                       placeholder="Current Password" required />
+              </div>
+              <div class="form-group">
+                <input type="password" id="newPassword" class="form-control" 
+                       placeholder="New Password" required minlength="6" />
+              </div>
+              <div class="form-group">
+                <input type="password" id="confirmNewPassword" class="form-control" 
+                       placeholder="Confirm New Password" required minlength="6" />
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">
+                <i class="fas fa-key"></i> Update Password
+              </button>
+            </form>
+
+            <div class="divider">
+              <span>OR</span>
+            </div>
+
+            <form id="resetPasswordForm" class="password-form">
+              <h4>Reset Password</h4>
+              <div class="form-group">
+                <input type="email" id="resetEmail" class="form-control" 
+                       placeholder="Enter your email" required />
+              </div>
+              <button type="submit" class="btn btn-warning btn-block">
+                <i class="fas fa-envelope"></i> Send Reset Link
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Notification Toast -->
+    <div class="toast-container">
+      <div id="notificationToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <i class="fas fa-bell"></i>
+          <strong class="mr-auto">Notification</strong>
+          <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="toast-body"></div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="shop-footer">
+      <div class="container text-center">
+        <p>&copy; 2025 MyFootballStore. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

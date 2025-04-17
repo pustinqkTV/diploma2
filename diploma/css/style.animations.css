@@ -1,0 +1,178 @@
+/***************************************************************
+  style.animations.css
+  (Global Animations & Keyframes for MyFootballStore)
+***************************************************************/
+
+/* Fade In / Fade Out */
+.fade-in {
+  animation: fadeInUnified 0.8s ease-in-out;
+}
+@keyframes fadeInUnified {
+  0%   { opacity: 0; transform: translateY(5px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.fade-out {
+  animation: fadeOut 0.8s ease-in-out forwards;
+}
+@keyframes fadeOut {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Modal fade in */
+@keyframes modalFadeIn {
+  0%   { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* Pop, Bounce, Pulse */
+.pop {
+  animation: popAnimation 0.5s ease;
+}
+@keyframes popAnimation {
+  0%   { transform: scale(0.9); opacity: 0; }
+  80%  { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
+.bounce-on-hover:hover {
+  animation: bounceAnim 0.6s;
+}
+@keyframes bounceAnim {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-5px); }
+}
+.pulse {
+  animation: pulseAnim 2s infinite;
+}
+@keyframes pulseAnim {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+.pulse-slow {
+  animation: pulseSlow 3s infinite;
+}
+@keyframes pulseSlow {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Slide In / Slide Out */
+.slide-in-left {
+  animation: slideInLeft 0.7s ease-out;
+}
+@keyframes slideInLeft {
+  0%   { transform: translateX(-100%); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+.slide-out-right {
+  animation: slideOutRight 0.7s ease-in forwards;
+}
+@keyframes slideOutRight {
+  0%   { transform: translateX(0); opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+/* Shake */
+.shake {
+  animation: shake 0.8s ease-in-out;
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+  20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
+/* Spin Effects */
+.spin-slow {
+  animation: spinSlow 4s linear infinite;
+}
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.spin-fast {
+  animation: spinFast 1.5s linear infinite;
+}
+@keyframes spinFast {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Zoom In */
+.zoom-in {
+  animation: zoomIn 0.5s ease-out;
+}
+@keyframes zoomIn {
+  0%   { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Complex Wave */
+.complex-wave {
+  animation: complexWave 3s infinite ease-in-out;
+}
+@keyframes complexWave {
+  0%   { transform: translateX(0) translateY(0); opacity: 0.8; }
+  25%  { transform: translateX(10px) translateY(-10px); opacity: 1; }
+  50%  { transform: translateX(0) translateY(-20px); opacity: 0.8; }
+  75%  { transform: translateX(-10px) translateY(-10px); opacity: 1; }
+  100% { transform: translateX(0) translateY(0); opacity: 0.8; }
+}
+
+/* Icon Animations */
+.icon-pulse {
+  animation: iconPulse 1.5s infinite ease-in-out;
+}
+@keyframes iconPulse {
+  0%   { transform: scale(1); opacity: 1; }
+  50%  { transform: scale(1.2); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.icon-wobble {
+  animation: iconWobble 1s infinite ease-in-out;
+}
+@keyframes iconWobble {
+  0%   { transform: rotate(0deg); }
+  25%  { transform: rotate(5deg); }
+  50%  { transform: rotate(0deg); }
+  75%  { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Float */
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* Shimmer */
+.shimmer {
+  background: linear-gradient(90deg, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+@keyframes shimmer {
+  0%   { background-position: -500px 0; }
+  100% { background-position: 500px 0; }
+}
+
+/* ADVANCED: additional swirl in-out animation (ADDED EXAMPLE) */
+.swirl-in {
+  animation: swirlIn 0.8s ease both;
+}
+@keyframes swirlIn {
+  0% {
+    transform: rotate(-540deg) scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+}
